@@ -20,11 +20,11 @@ logger:
   filename: "./logs/app.log"
 
 mongo:
-  user: "ccuser"
+  user: "user"
   password: ""
-  hostname: "paulo.mongohq.com:10092"
-  database: "cc"
-  uri: "mongodb://ccuser:@paulo.mongohq.com:10092/cc"
+  hostname: "alex.mongohq.com:10083"
+  database: "ibeacon"
+  uri: "mongodb://user:@alex.mongohq.com:10083/ibeacon"
   # Attempt to reconnect interval in ms.
   reconnectTime: 500
 

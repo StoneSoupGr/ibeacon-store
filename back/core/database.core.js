@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var log = require('logg').getLogger('cc.core.database');
 
 var helpers = require('../util/helpers');
+var global = require('./globals');
 
 // models
 var storeModel = require('../models/store.model').getInstance();
@@ -83,6 +84,13 @@ Conn.prototype.init = function() {
   mongoose.connection.on('open', this._onOpen.bind(this));
   mongoose.connection.on('close', this._onClose.bind(this));
   mongoose.connection.on('error', this._onError.bind(this));
+
+  // take care of Heroku env
+  if (global.env === global.Environments.HEROKU) {
+    // use env provided credentials
+    config.mongo.user = process.env.MONGO_USER;
+    config.mongo.password = process.env.MONGO_PASS;
+  }
 
   this._connectMongo(this.initModels.bind(this, function(err) {
     if (err) {return def.reject(err);}
