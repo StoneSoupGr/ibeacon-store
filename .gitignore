@@ -5,4 +5,3 @@ wiki
 .sass-cache
 .elasticbeanstalk/
 node_modules
-config/heroku.yaml
