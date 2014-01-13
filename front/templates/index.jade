@@ -1,0 +1,30 @@
+// index file
+// ip {string} The client's IP
+
+extends layout/default
+
+block content
+  div.jumbotron
+    h1 Holla!
+    p Because you can!
+    p Hello #{ip}!
+    .container
+    a.btn.btn-large.btn-success.start-scan(href="#") No Drama Please!
+      i.icon-arrow-right
+
+  div.container
+    div.row
+      div.col-sm-6
+        h2 Yadda
+        p Lorem
+        p Ipsum
+
+      div.col-sm-6
+        h2 Share the love
+        a(href="https://twitter.com/share", data-url="http://lolololololo.com/", data-text="", data-via="thanpolas", data-size="large", data-related="thanpolas").twitter-share-button Tweet
+
+  script.
+    var serv = {};
+
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+

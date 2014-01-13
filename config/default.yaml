@@ -1,0 +1,32 @@
+webserver:
+  port: 3000
+  apiPort: 3001
+
+# Google Analytics key
+ga: "UA-XXXXX-X"
+
+logger:
+  # Log Levels:
+  # SEVERE: 1000
+  # WARN:   800
+  # INFO:   600
+  # FINE:   400
+  # FINER:  200
+  # FINEST: 100
+  level: 400
+  syslog: false
+  file: false
+  console: true
+  filename: "./logs/app.log"
+
+mongo:
+  user: "ccuser"
+  password: ""
+  hostname: "paulo.mongohq.com:10092"
+  database: "cc"
+  uri: "mongodb://ccuser:@paulo.mongohq.com:10092/cc"
+  # Attempt to reconnect interval in ms.
+  reconnectTime: 500
+
+echoServer: "http://localhost"
+webserverUrl: "http://localhost:3000"

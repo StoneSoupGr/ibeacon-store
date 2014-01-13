@@ -1,0 +1,53 @@
+{
+  "name": "ibeacon-server",
+  "version": "0.0.0",
+  "description": "ibeacon general storage server",
+  "main": "./",
+  "scripts": {
+    "start": "node back/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+
+  "bundledDependencies": [
+    "async",
+    "chai",
+    "collections",
+    "config",
+    "crude",
+    "express",
+    "grunt",
+    "grunt-contrib-copy",
+    "grunt-contrib-cssmin",
+    "grunt-contrib-imagemin",
+    "grunt-contrib-sass",
+    "grunt-contrib-uglify",
+    "grunt-contrib-watch",
+    "grunt-express-server",
+    "grunt-mocha-test",
+    "grunt-open",
+    "grunt-parallel",
+    "grunt-shell",
+    "jade",
+    "lodash",
+    "logg",
+    "mantri",
+    "matchdep",
+    "middlewarify",
+    "mocha",
+    "mongoose",
+    "node-entity",
+    "sinon",
+    "slug",
+    "socket.io",
+    "socket.io-client",
+    "validator",
+    "when",
+    "yaml"
+  ],
+  "engines": {
+    "node": "0.10.x"
+  }
+}

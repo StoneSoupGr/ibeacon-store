@@ -1,0 +1,22 @@
+{
+  "jsRoot": "./scripts",
+  "documentRoot": "./front/components/",
+  "vendorLibs": {
+    "lodash": "/../components/lodash/dist/lodash.min",
+    "when": "/../components/when/when",
+    "eventEmitter": "/../components/eventEmitter/EventEmitter"
+  },
+
+  "deps": {
+    "src": "static/scripts/",
+    "root": "./",
+    "dest": "deps.js"
+  },
+
+  "build": {
+    "src": "front/static/scripts/app.js",
+    "dest": "front/static/app.min.js",
+    "outputWrapper": "",
+    "excludeVendor": [""]
+  }
+}
