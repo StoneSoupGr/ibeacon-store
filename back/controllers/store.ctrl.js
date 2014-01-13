@@ -12,6 +12,8 @@ var Controller = require('./controller');
 var StoreModel = require('../models/store.model').getInstance();
 var helpers = require('../util/helpers');
 
+var SEP = '.';
+
 /**
  *
  * @contructor
@@ -32,22 +34,31 @@ helpers.addSingletonGetter(Store);
  */
 Store.prototype._store = function(req, res) {
   // var frontToken = req.header('x-front-token');
-  var frontToken = 'DONT USE YET';
-  log.fine('_useResult() :: init, submitting data. frontToken:', frontToken);
+  log.fine('_useResult() :: init, submitting data.');
 
   // if (!frontToken || !IndexCtrl.frontTokenSet.has(frontToken)) {
   //   return res.send(400, 'Nope');
   // }
 
-
   if (!this._validateBody(req, res, req.body)) {
     return;
   }
+  var frontToken = req.header('x-front-token');
 
+  // Validate the identity of the poster
+  if (frontToken !== 'ibeacon-stonesoup') {
+    return res.send(401, 'No Access');
+  }
+
+  // Assign values to store
   var store = new StoreModel.Model();
   store.creatorIp = req.connection.remoteAddress;
-  store.storeObj = this._assignValues(req.body);
+  store.uuid = req.body.uuid;
+  store.minNum = req.body.minNum;
+  store.majNum = req.body.majNum;
+  store.storeObj = req.body.data;
   store.headers = req.headers;
+  store.uniqueUrl = store.uuid + SEP + store.majNum + SEP + store.minNum;
   store.save(this._onSave.bind(this, req, res));
 };
 
@@ -63,20 +74,22 @@ Store.prototype._validateBody = function(req, res, body) {
     return false;
   }
 
+  if (!__.isString(body.majNum)) {
+    res.send(400, 'No "majNum" parameter was defined');
+    return false;
+  }
+
+  if (!__.isString(body.minNum)) {
+    res.send(400, 'No "minNum" parameter was defined');
+    return false;
+  }
+
   if (!__.isString(body.data)) {
     res.send(400, '"data" parameter is not of type Object');
     return false;
   }
 
   return true;
-};
-
-Store.prototype._assignValues = function(body) {
-  var storeObj = {
-    uuid: body.uuid,
-    data: body.data,
-  };
-  return storeObj;
 };
 
 /**

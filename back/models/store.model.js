@@ -34,6 +34,9 @@ Result.Schema = {
   creatorIp: {type: String, trim: true, required: true},
   createdOn: {type: Date, default: Date.now},
   storeObj: {type: Object},
+  uuid: {type: String, required: true},
+  majNum: {type: Number, required: true},
+  minNum: {type: Number, required: true},
   headers: {type: Object},
 };
 
