@@ -14,7 +14,7 @@ var log = require('logg').getLogger('cc.core.database');
 var helpers = require('../util/helpers');
 
 // models
-var resultModel = require('../models/result.model').getInstance();
+var storeModel = require('../models/store.model').getInstance();
 
 // var noop = function() {};
 
@@ -101,7 +101,7 @@ Conn.prototype.initModels = function(done, err) {
   if (err) { return done(err); }
 
   var initSequence = [
-    resultModel.init.bind(resultModel),
+    storeModel.init.bind(storeModel),
   ];
 
   async.series(initSequence, function(err){

@@ -4,12 +4,11 @@
 
 var util = require('util');
 var __ = require('lodash');
-var config = require('config');
+// var config = require('config');
 var log = require('logg').getLogger('cc.ctrl.resultRead');
 
 var Controller = require('./controller');
-var resultModel = require('../models/result.model').getInstance();
-var commonPorts = require('../../echoServer/core/tcp-port-numbers');
+var storeModel = require('../models/store.model').getInstance();
 var helpers = require('../util/helpers');
 
 /**
@@ -34,7 +33,7 @@ ResultRead.prototype._useResultRead = function(req, res) {
   var uuid = req.params.uuid;
   log.finer('_useResultRead() :: request for result:', uuid);
 
-  resultModel.Model.findOne({uniqueUrl: uuid}, function(err, resObj) {
+  storeModel.Model.findOne({uniqueUrl: uuid}, function(err, resObj) {
     if (err) {
       return res.send(500, 'Error');
     }
