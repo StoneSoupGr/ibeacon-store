@@ -12,7 +12,7 @@ var Controller = require('./controller');
 var StoreModel = require('../models/store.model').getInstance();
 var helpers = require('../util/helpers');
 
-var SEP = '.';
+var SEP = '/';
 
 /**
  *

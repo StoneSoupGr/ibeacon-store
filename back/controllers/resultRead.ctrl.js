@@ -31,9 +31,15 @@ helpers.addSingletonGetter(ResultRead);
  */
 ResultRead.prototype._useResultRead = function(req, res) {
   var uuid = req.params.uuid;
-  log.finer('_useResultRead() :: request for result:', uuid);
+  var majNum = req.params.majNum;
+  var minNum = req.params.minNum;
+  log.finer('_useResultRead() :: request for result:', uuid, majNum, minNum);
 
-  storeModel.Model.findOne({uniqueUrl: uuid}, function(err, resObj) {
+  storeModel.Model.findOne({
+    uuid: uuid,
+    majNum: majNum,
+    minNum: minNum,
+  }, function(err, resObj) {
     if (err) {
       return res.send(500, 'Error');
     }
@@ -41,7 +47,6 @@ ResultRead.prototype._useResultRead = function(req, res) {
     if (!__.isObject(resObj)) {
       return res.send(500, 'Not Found');
     }
-
 
     if (resObj) {
       res.json(resObj.toPublic());

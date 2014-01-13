@@ -19,5 +19,5 @@ router.init = function(app) {
   app.get('/', homeCtrl.use);
 
   app.post('/store', storeCtrl.use);
-  app.get('/r/:uuid?', resultReadCtrl.use);
+  app.get('/r/:uuid/:majNum/:minNum', resultReadCtrl.use);
 };
